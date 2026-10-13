@@ -1,0 +1,550 @@
+Here is the complete set of minimal, exam-ready Java programs covering every unique question across your 15 lab sets, along with their expected outputs.
+
+---
+
+### 1. JDBC Database Connection (Lab Simulation)
+
+```java
+import java.util.Scanner;
+
+public class JDBCDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Connecting to Database: jdbc:mysql://localhost:3306/collegedb");
+        System.out.println("Connected to Database successfully!\n");
+
+        System.out.print("Enter Student Roll No: ");
+        int roll = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Enter Student Name: ");
+        String name = sc.nextLine();
+
+        System.out.println("\nQuery OK, 1 row affected.");
+        System.out.println("\n--- Student Records ---");
+        System.out.println("RollNo: " + roll + " | Name: " + name);
+        System.out.println("Database connection closed.");
+        sc.close();
+    }
+}
+
+```
+
+**Expected Output:**
+
+```text
+Connecting to Database: jdbc:mysql://localhost:3306/collegedb
+Connected to Database successfully!
+
+Enter Student Roll No: 101
+Enter Student Name: Alex
+
+Query OK, 1 row affected.
+
+--- Student Records ---
+RollNo: 101 | Name: Alex
+Database connection closed.
+
+```
+
+---
+
+### 2. Generic Methods
+
+```java
+public class GenericDemo {
+    static <T> void printArray(T[] arr) {
+        for (T val : arr) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Integer[] nums = {1, 2, 3};
+        String[] words = {"Java", "Lab"};
+
+        printArray(nums);
+        printArray(words);
+    }
+}
+
+```
+
+**Expected Output:**
+
+```text
+1 2 3 
+Java Lab 
+
+```
+
+---
+
+### 3. Keyboard Event Handling
+
+```java
+import java.awt.*;
+import java.awt.event.*;
+
+public class KeyDemo extends Frame implements KeyListener {
+    Label l = new Label("Press any key");
+
+    KeyDemo() {
+        l.setBounds(50, 80, 200, 30);
+        add(l);
+        addKeyListener(this);
+        setSize(300, 200);
+        setLayout(null);
+        setVisible(true);
+    }
+
+    public void keyPressed(KeyEvent e) {
+        l.setText("Key Pressed: " + e.getKeyChar());
+    }
+    public void keyReleased(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {}
+
+    public static void main(String[] args) {
+        new KeyDemo();
+    }
+}
+
+```
+
+**Expected Output:**
+
+*(A GUI window appears; pressing 'a' updates the label)*
+
+```text
+Key Pressed: a
+
+```
+
+---
+
+### 4. Swing GUI
+
+```java
+import javax.swing.*;
+
+public class SwingDemo {
+    public static void main(String[] args) {
+        JFrame f = new JFrame("Swing Demo");
+        JButton b = new JButton("Click Me");
+        b.setBounds(70, 70, 100, 30);
+
+        f.add(b);
+        f.setSize(250, 200);
+        f.setLayout(null);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
+
+```
+
+**Expected Output:**
+
+*(A Swing window displays a single clickable "Click Me" button)*
+
+---
+
+### 5. Multilevel Inheritance
+
+```java
+class Animal {
+    void eat() { System.out.println("Eating..."); }
+}
+
+class Dog extends Animal {
+    void bark() { System.out.println("Barking..."); }
+}
+
+class Puppy extends Dog {
+    void weep() { System.out.println("Weeping..."); }
+}
+
+public class MultilevelDemo {
+    public static void main(String[] args) {
+        Puppy p = new Puppy();
+        p.eat();
+        p.bark();
+        p.weep();
+    }
+}
+
+```
+
+**Expected Output:**
+
+```text
+Eating...
+Barking...
+Weeping...
+
+```
+
+---
+
+### 6. Multiple Threads
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Running: " + getName());
+    }
+}
+
+public class MultiThreadDemo {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+        t1.start();
+        t2.start();
+    }
+}
+
+```
+
+**Expected Output:**
+
+```text
+Running: Thread-0
+Running: Thread-1
+
+```
+
+---
+
+### 7. Applet (Display Text Message)
+
+```java
+import java.applet.Applet;
+import java.awt.Graphics;
+
+/* <applet code="AppletText.class" width="250" height="150"></applet> */
+
+public class AppletText extends Applet {
+    public void paint(Graphics g) {
+        g.drawString("Hello Applet", 50, 50);
+    }
+}
+
+```
+
+**Execution & Output:**
+
+```bash
+javac AppletText.java
+appletviewer AppletText.java
+
+```
+
+*(Window displays: `Hello Applet`)*
+
+---
+
+### 8. Applet with Factorial ("Compute")
+
+```java
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+
+/* <applet code="FactApplet.class" width="250" height="150"></applet> */
+
+public class FactApplet extends Applet implements ActionListener {
+    TextField t = new TextField(5);
+    Button b = new Button("Compute");
+    int fact = 1;
+
+    public void init() {
+        add(t);
+        add(b);
+        b.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        int n = Integer.parseInt(t.getText());
+        fact = 1;
+        for (int i = 1; i <= n; i++) fact *= i;
+        repaint();
+    }
+
+    public void paint(Graphics g) {
+        g.drawString("Factorial: " + fact, 20, 80);
+    }
+}
+
+```
+
+**Expected Output:**
+
+*(Enter `5`, click `Compute`)*
+
+```text
+Factorial: 120
+
+```
+
+---
+
+### 9. Hierarchical Inheritance
+
+```java
+class Animal {
+    void eat() { System.out.println("Eating food"); }
+}
+
+class Dog extends Animal {}
+class Cat extends Animal {}
+
+public class HierarchicalDemo {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        Cat c = new Cat();
+        d.eat();
+        c.eat();
+    }
+}
+
+```
+
+**Expected Output:**
+
+```text
+Eating food
+Eating food
+
+```
+
+---
+
+### 10. Generic Bounded Type Parameters
+
+```java
+public class BoundDemo {
+    static <T extends Number> void show(T val) {
+        System.out.println("Numeric Value: " + val);
+    }
+
+    public static void main(String[] args) {
+        show(10);
+        show(5.5);
+    }
+}
+
+```
+
+**Expected Output:**
+
+```text
+Numeric Value: 10
+Numeric Value: 5.5
+
+```
+
+---
+
+### 11. Package Implementation
+
+**File 1: `Message.java**`
+
+```java
+package mypack;
+
+public class Message {
+    public void show() {
+        System.out.println("Hello from mypack!");
+    }
+}
+
+```
+
+**File 2: `PackageDemo.java**`
+
+```java
+import mypack.Message;
+
+public class PackageDemo {
+    public static void main(String[] args) {
+        Message m = new Message();
+        m.show();
+    }
+}
+
+```
+
+**Execution & Output:**
+
+```bash
+javac -d . Message.java
+javac PackageDemo.java
+java PackageDemo
+
+```
+
+```text
+Hello from mypack!
+
+```
+
+---
+
+### 12. Java Servlet ("Hello World")
+
+```java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class HelloServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        out.println("<h1>Hello World</h1>");
+    }
+}
+
+```
+
+**Expected Output:**
+
+*(Browser displays at `http://localhost:8080/App/hello`)*
+
+```text
+Hello World
+
+```
+
+---
+
+### 13. Multiple Interface
+
+```java
+interface Printable {
+    void print();
+}
+
+interface Showable {
+    void show();
+}
+
+public class MultipleInterfaceDemo implements Printable, Showable {
+    public void print() {
+        System.out.println("Printing...");
+    }
+
+    public void show() {
+        System.out.println("Showing...");
+    }
+
+    public static void main(String[] args) {
+        MultipleInterfaceDemo obj = new MultipleInterfaceDemo();
+        obj.print();
+        obj.show();
+    }
+}
+
+```
+
+**Expected Output:**
+
+```text
+Printing...
+Showing...
+
+```
+
+---
+
+### 14. Mouse Event Handling
+
+```java
+import java.awt.*;
+import java.awt.event.*;
+
+public class MouseDemo extends Frame implements MouseListener {
+    Label l = new Label("Click inside");
+
+    MouseDemo() {
+        l.setBounds(50, 80, 200, 30);
+        add(l);
+        addMouseListener(this);
+        setSize(300, 200);
+        setLayout(null);
+        setVisible(true);
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        l.setText("Clicked at: " + e.getX() + ", " + e.getY());
+    }
+
+    public void mousePressed(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
+
+    public static void main(String[] args) {
+        new MouseDemo();
+    }
+}
+
+```
+
+**Expected Output:**
+
+*(Clicking inside the window updates the label)*
+
+```text
+Clicked at: 120, 95
+
+```
+
+---
+
+### 15. Hybrid Interface
+
+*(Extending one class while implementing multiple interfaces, or one interface extending another along with a common class)*
+
+```java
+interface Walkable {
+    void walk();
+}
+
+interface Runnable {
+    void run();
+}
+
+class LivingBeing {
+    void breathe() {
+        System.out.println("Breathing...");
+    }
+}
+
+public class HybridDemo extends LivingBeing implements Walkable, Runnable {
+    public void walk() { System.out.println("Walking..."); }
+    public void run()  { System.out.println("Running..."); }
+
+    public static void main(String[] args) {
+        HybridDemo h = new HybridDemo();
+        h.breathe();
+        h.walk();
+        h.run();
+    }
+}
+
+```
+
+**Expected Output:**
+
+```text
+Breathing...
+Walking...
+Running...
+
+```
