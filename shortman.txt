@@ -1,0 +1,573 @@
+Java Lab Question Analysis
+https://gemini.google.com/app/f5545b1b905f2a23
+User prompt: 2.Write a Java program to implement a Swing.
+Response: Aim
+To write a simple Java program to create a graphical user interface (GUI) using basic Swing components (JFrame,
+JButton, and JLabel).
+Algorithm
+.. Import Swing packages: javax.swing.* and java.awt.event.*.
+2. Create a top-level window using JFrame.
+3. Create a JButton (click button) and a JLabel (text display).
+4. Set the position and size of both components using setBounds().
+5. Attach an ActionListener to the button to update the label's text when clicked.
+6. Add the components to the frame, set layout to null, set window size, and make it visible using setVisible(true).
+Java Program
+import javax.swing.*;
+import java.awt.event.*;
+public class SwingDemo {
+    public static void main(String[] args) {
+        // 1. Create Frame (window)
+        JFrame f = new JFrame("Swing Example");
+        // 2. Create Label and Button
+        JLabel label = new JLabel("Click the button");
+        label.setBounds(50, 50, 200, 30);
+        JButton btn = new JButton("Click Me");
+        btn.setBounds(50, 100, 100, 30);
+        // 3. Add Click Action
+        btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                label.setText("Hello, Swing!");
+            }
+        });
+        // 4. Add components to Frame
+        f.add(label);
+        f.add(btn);
+        // 5. Window settings
+        f.setSize(300, 250);
+        f.setLayout(null);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+    }
+}
+Output
+Firefox about:blank
+1 of 14 13-Oct-26, 10:52 AM
+.. A window appears showing a label "Click the button" and a button "Click Me".
+2. When "Click Me" is clicked, the label text changes to:
+Hello, Swing!
+User prompt: Write a Java program to implement Multilevel inheritance in simple using animal and dog classes
+Response: Aim
+To write a simple Java program to demonstrate multilevel inheritance using Animal, Dog, and Puppy classes.
+Algorithm
+.. Create a base class Animal with a method eat().
+2. Create an intermediate class Dog that extends Animal and has a method bark().
+3. Create a derived class Puppy that extends Dog and has a method weep().
+4. In the main method of class MultilevelDemo, instantiate an object of the lowest child class (Puppy).
+5. Call eat(), bark(), and weep() using the Puppy object to demonstrate that it inherits features from all levels.
+Java Program
+// Base class
+class Animal {
+    void eat() {
+        System.out.println("Animal eats food");
+    }
+}
+// Intermediate derived class
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+// Final derived class
+class Puppy extends Dog {
+    void weep() {
+        System.out.println("Puppy weeps");
+    }
+}
+public class MultilevelDemo {
+    public static void main(String[] args) {
+        Puppy p = new Puppy();
+        p.eat();   // Inherited from Animal
+        p.bark();  // Inherited from Dog
+        p.weep();  // Puppy's own method
+    }
+}
+Output
+Animal eats food
+Firefox about:blank
+2 of 14 13-Oct-26, 10:52 AM
+Dog barks
+Puppy weeps
+User prompt: 2.Write a Java program to create multiple thread. in simple
+Response: Aim
+To write a simple Java program to create and run multiple threads concurrently using the Thread class.
+Algorithm
+.. Create a class MyThread that extends Thread.
+2. Override the run() method to print the currently running thread's name using
+Thread.currentThread().getName().
+3. In main(), create multiple instances of MyThread (e.g., t1, t2, t3).
+4. Start each thread using the start() method, which allocates a new call stack and invokes run().
+Java Program
+// Thread definition
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println(Thread.currentThread().getName() + " running: count " + i);
+        }
+    }
+}
+public class MultiThreadDemo {
+    public static void main(String[] args) {
+        // Creating three thread objects
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+        MyThread t3 = new MyThread();
+        // Assigning custom names
+        t1.setName("Thread-1");
+        t2.setName("Thread-2");
+        t3.setName("Thread-3");
+        // Starting threads concurrently
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+Output
+(Order of lines may interleave because threads execute concurrently)
+Thread-1 running: count 1
+Thread-1 running: count 2
+Thread-2 running: count 1
+Thread-3 running: count 1
+Thread-1 running: count 3
+Thread-2 running: count 2
+Firefox about:blank
+3 of 14 13-Oct-26, 10:52 AM
+Thread-2 running: count 3
+Thread-3 running: count 2
+Thread-3 running: count 3
+User prompt: more simple
+Response: Aim
+To write a simple Java program to create and run multiple threads using the Thread class.
+Algorithm
+.. Create a class MyThread that extends Thread.
+2. Inside run(), print a message with the thread's ID or name.
+3. In main(), create two thread objects (t1 and t2).
+4. Call start() on both objects to run them concurrently.
+Java Program
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread running: " + getName());
+    }
+}
+public class MultiThreadDemo {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+        t1.start();
+        t2.start();
+    }
+}
+Output
+Thread running: Thread-0
+Thread running: Thread-1
+User prompt: 2. To write a Java program to display the text message using Applet. in simple
+Response: Aim
+To write a simple Java program to display a text message in an Applet window.
+Algorithm
+.. Import the necessary packages: java.applet.Applet and java.awt.Graphics.
+2. Create a public class SimpleApplet that extends Applet.
+3. Override the paint(Graphics g) method.
+4. Use g.drawString() inside paint() to render the text message at specified (x, y) coordinates.
+Firefox about:blank
+4 of 14 13-Oct-26, 10:52 AM
+Firefox
+about:blank
+5. Embed the <applet> tag in comments so it can be executed directly using the appletviewer tool.
+Java Program
+import java.applet.Applet;
+import java.awt.Graphics;
+/*
+<applet code="SimpleApplet.class" width="300" height="200">
+</applet>
+*/
+public class SimpleApplet extends Applet {
+// paint method is called automatically to display graphics/text
+public void paint(Graphics g) {
+g.drawString("Hello, Welcome to Applet!", 50, 100);
+}
+}
+How to Run in Lab
+javac SimpleApplet.java
+appletviewer SimpleApplet.java
+Output
+An applet window opens displaying:
+Hello, Welcome to Applet!
+User prompt: To develop Applet program using factorial calculation(“Compute”) in simple
+Response: Aim
+To write a simple Java Applet program to calculate and display the factorial of a given number when a "Compute" button is
+clicked.
+Algorithm
+.. Import java.applet.Applet, java.awt.*, and java.awt.event.*.
+2. Create a class FactorialApplet extending Applet and implementing ActionListener.
+3. Declare GUI components: a TextField for input, a Button labeled "Compute", and a Label for the result.
+4. In init(), add the components to the Applet and register the button using addActionListener(this).
+5. In actionPerformed(ActionEvent e):
+Read the integer from the text field using Integer.parseInt().
+Calculate factorial using a simple loop (fact *= i).
+Display the result on the label using setText().
+Java Program
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+5 of 14
+13-Oct-26, 10:52 AM
+/*
+<applet code="FactorialApplet.class" width="300" height="200">
+</applet>
+*/
+public class FactorialApplet extends Applet implements ActionListener {
+    TextField txtNum;
+    Button btnCompute;
+    Label lblResult;
+    public void init() {
+        // Create components
+        txtNum = new TextField(10);
+        btnCompute = new Button("Compute");
+        lblResult = new Label("Result: ");
+        // Add components to Applet
+        add(new Label("Enter Number:"));
+        add(txtNum);
+        add(btnCompute);
+        add(lblResult);
+        // Register button listener
+        btnCompute.addActionListener(this);
+    }
+    public void actionPerformed(ActionEvent e) {
+        int n = Integer.parseInt(txtNum.getText());
+        long fact = 1;
+        for (int i = 1; i <= n; i++) {
+            fact *= i;
+        }
+        lblResult.setText("Factorial: " + fact);
+    }
+}
+How to Run
+javac FactorialApplet.java
+appletviewer FactorialApplet.java
+Output
+.. An applet window displays an input box with the label Enter Number: and a Compute button.
+2. Enter 5 and click Compute.
+3. The display updates to:
+Factorial: 120
+User prompt: is it cannot more simple?
+Response: Aim
+To calculate the factorial of a number in an Applet when clicking "Compute".
+Firefox about:blank
+6 of 14 13-Oct-26, 10:52 AM
+Algorithm
+.. Create a TextField, a Button ("Compute"), and a variable to store the answer.
+2. In init(), add the text field and button to the applet and register the button listener.
+3. In actionPerformed(), read the number, compute factorial using a loop, and call repaint().
+4. In paint(), draw the result string.
+Java Program
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+/* <applet code="FactApplet.class" width="250" height="150"></applet> */
+public class FactApplet extends Applet implements ActionListener {
+    TextField t = new TextField(5);
+    Button b = new Button("Compute");
+    int ans = 1;
+    public void init() {
+        add(t);
+        add(b);
+        b.addActionListener(this);
+    }
+    public void actionPerformed(ActionEvent e) {
+        int n = Integer.parseInt(t.getText());
+        ans = 1;
+        for (int i = 1; i <= n; i++) ans *= i;
+        repaint();
+    }
+    public void paint(Graphics g) {
+        g.drawString("Factorial: " + ans, 20, 80);
+    }
+}
+Output
+Enter 5 in the box.
+Click Compute.
+Screen prints:
+Factorial: 120
+User prompt: 2.Write a Java program to implement Hierarchical inheritance. in simple
+Response: Aim
+To write a simple Java program to demonstrate hierarchical inheritance, where multiple subclasses inherit from a single
+parent class.
+Algorithm
+Firefox about:blank
+7 of 14 13-Oct-26, 10:52 AM
+.. Create a base class Animal with a common method eat().
+2. Create two subclasses Dog and Cat that both extend Animal.
+3. Add unique methods to each child class (bark() in Dog, meow() in Cat).
+4. In main(), create objects for both Dog and Cat.
+5. Call eat() and their respective child methods to demonstrate shared inheritance.
+Java Program
+// Parent class
+class Animal {
+    void eat() {
+        System.out.println("Eating...");
+    }
+}
+// Child class 1
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Barking...");
+    }
+}
+// Child class 2
+class Cat extends Animal {
+    void meow() {
+        System.out
+User prompt: 2.Write a Java program to implement Hierarchical inheritance.
+Response: Aim
+To write a simple Java program to demonstrate hierarchical inheritance, where multiple subclasses inherit from a single
+parent class.
+Algorithm
+.. Create a parent class Animal with a common method eat().
+2. Create two child classes Dog and Cat that both extend Animal.
+3. Add unique methods to each child class: bark() in Dog and meow() in Cat.
+4. In main(), instantiate objects of both Dog and Cat.
+5. Call the inherited eat() method along with their respective individual methods to demonstrate hierarchical
+inheritance.
+Java Program
+// Parent class
+class Animal {
+    void eat() {
+        System.out.println("Eating...");
+    }
+}
+Firefox about:blank
+8 of 14 13-Oct-26, 10:52 AM
+// Subclass 1
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Barking...");
+    }
+}
+// Subclass 2
+class Cat extends Animal {
+    void meow() {
+        System.out.println("Meowing...");
+    }
+}
+public class HierarchicalDemo {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();   // Inherited from Animal
+        d.bark();  // Specific to Dog
+        Cat c = new Cat();
+        c.eat();   // Inherited from Animal
+        c.meow();  // Specific to Cat
+    }
+}
+Output
+Eating...
+Barking...
+Eating...
+Meowing...
+User prompt: give simple
+Response: Aim
+To write a simple Java program to demonstrate hierarchical inheritance.
+Algorithm
+.. Create a parent class A with a method showA().
+2. Create two child classes B and C that both extend A.
+3. In main(), create an object of B and call showA().
+4. Create an object of C and call showA().
+Java Program
+class A {
+    void showA() {
+        System.out.println("Parent Class A");
+    }
+}
+class B extends A {}
+class C extends A {}
+Firefox about:blank
+9 of 14 13-Oct-26, 10:52 AM
+public class HierarchicalDemo {
+    public static void main(String[] args) {
+        B b = new B();
+        C c = new C();
+        b.showA(); // B inherits A
+        c.showA(); // C inherits A
+    }
+}
+Output
+Parent Class A
+Parent Class A
+User prompt: use the animal , dog , cat like example
+Response: Aim
+To write a simple Java program to demonstrate hierarchical inheritance using Animal, Dog, and Cat classes.
+Algorithm
+.. Create a parent class Animal with an eat() method.
+2. Create two subclasses, Dog and Cat, that both inherit from Animal.
+3. In main(), create an object of Dog and call eat().
+4. Create an object of Cat and call eat().
+Java Program
+class Animal {
+    void eat() {
+        System.out.println("Eating food");
+    }
+}
+class Dog extends Animal {}
+class Cat extends Animal {}
+public class HierarchicalDemo {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        Cat c = new Cat();
+        d.eat(); // Dog inherits Animal
+        c.eat(); // Cat inherits Animal
+    }
+}
+Output
+Eating food
+Eating food
+Firefox about:blank
+10 of 14 13-Oct-26, 10:52 AM
+User prompt: 2.Write a Java program to create Generic Bounded type parameters. in simple
+Response: Aim
+To write a simple Java program to demonstrate Generic Bounded Type Parameters by restricting the type parameter to
+subclasses of Number.
+Algorithm
+.. Create a class BoundDemo with a generic method checkNumber(T val).
+2. Restrict the type parameter using the bound <T Number extends>.
+3. Inside the method, print val (it only accepts numeric types like Integer, Double, etc.).
+4. In main(), invoke the method with valid numbers (e.g., 10, 5.5).
+Java Program
+public class BoundDemo {
+    // Bounded type: T can only be Number or its subclasses (Integer, Double, Float...)
+    static <T extends Number> void show(T val) {
+        System.out.println("Numeric Value: " + val);
+    }
+    public static void main(String[] args) {
+        show(10);     // Valid (Integer)
+        show(5.5);    // Valid (Double)
+        // show("Hello"); // Compile-time Error: String is not a Number
+    }
+}
+Output
+Numeric Value: 10
+Numeric Value: 5.5
+User prompt: Write a Java application to implement Mouse event handling mechanisms in simple
+Response: Aim
+To write a simple Java program to handle mouse events using the MouseListener interface.
+Algorithm
+.. Import java.awt.* and java.awt.event.*.
+2. Create a class MouseDemo extending Frame and implementing MouseListener.
+3. Create a Label to display the mouse action.
+4. Add the mouse listener to the frame using addMouseListener(this).
+5. Implement mouseClicked(MouseEvent e) to update the label when the mouse is clicked.
+6. Provide empty bodies for the other four mandatory methods of MouseListener (mousePressed, mouseReleased,
+mouseEntered, mouseExited).
+Firefox about:blank
+11 of 14 13-Oct-26, 10:52 AM
+7. Set the frame size, layout, and make it visible.
+Java Program
+import java.awt.*;
+import java.awt.event.*;
+public class MouseDemo extends Frame implements MouseListener {
+    Label lbl;
+    MouseDemo() {
+        lbl = new Label("Click inside the window");
+        lbl.setBounds(50, 100, 200, 30);
+        add(lbl);
+        addMouseListener(this);
+        setSize(300, 250);
+        setLayout(null);
+        setVisible(true);
+    }
+    // Handles mouse click
+    public void mouseClicked(MouseEvent e) {
+        lbl.setText("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
+    }
+    // Required by MouseListener interface
+    public void mousePressed(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
+    public static void main(String[] args) {
+        new MouseDemo();
+    }
+}
+Output
+A window appears showing:
+Click inside the window
+When clicked inside the frame (e.g., at coordinates 120, 150), the text updates to:
+Mouse Clicked at (120, 150)
+User prompt: 2.Develop a Java program to implement Package. in simple
+Response: Aim
+To write a simple Java program to demonstrate the creation and importing of a user-defined package.
+Algorithm
+.. Declare a user-defined package mypack using the package keyword at the beginning of the source file.
+2. Define a public class Message inside this package with a public method display().
+Firefox about:blank
+12 of 14 13-Oct-26, 10:52 AM
+3. In a separate source file, import the class using import mypack.Message;.
+4. Create an object of Message and call display() to verify cross-package access.
+Java Program
+File 1: Message.java
+package mypack;
+public class Message {
+    public void display() {
+        System.out.println("Hello from mypack Package!");
+    }
+}
+File 2: PackageDemo.java
+import mypack.Message;
+public class PackageDemo {
+    public static void main(String[] args) {
+        Message msg = new Message();
+        msg.display();
+    }
+}
+How to Compile & Run
+# 1. Compile Message.java and create the package folder (-d . creates the directory automatically)
+javac -d . Message.java
+# 2. Compile PackageDemo.java
+javac PackageDemo.java
+# 3. Run PackageDemo
+java PackageDemo
+Output
+Hello from mypack Package!
+User prompt: 2.To write a java servlet program to display “Hello world” on a browser.
+Response: Aim
+To write a simple Java Servlet program to display "Hello World" on a web browser.
+Algorithm
+.. Import required servlet and I/O packages: java.io.* and javax.servlet.http.* (or jakarta.servlet.http.*).
+2. Create a public class HelloServlet that extends HttpServlet.
+3. Override the doGet(HttpServletRequest req, HttpServletResponse res) method.
+4. Set the response content type to HTML using res.setContentType("text/html").
+5. Obtain a PrintWriter instance from the response object via res.getWriter().
+Firefox about:blank
+13 of 14 13-Oct-26, 10:52 AM
+6. Write "Hello World" to the output stream to render on the client browser.
+Java Program
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+public class HelloServlet extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // 1. Set response content type
+        response.setContentType("text/html");
+        // 2. Get output stream
+        PrintWriter out = response.getWriter();
+        // 3. Print message to browser
+        out.println("<h1>Hello World</h1>");
+    }
+}
+Web Deployment Descriptor (web.xml)
+(Placed in WEB-INF/web.xml)
+<web-app>
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+</web-app>
+Output
+When opening http://localhost:8080/<ProjectName>/hello in a browser:
+Hello Worl

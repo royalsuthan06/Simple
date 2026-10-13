@@ -1,0 +1,30 @@
+package mypack;
+
+public class Message {
+    public void display() {
+        System.out.println("Hello from mypack Package!");
+    }
+}
+
+
+
+import mypack.Message;
+
+public class PackageDemo {
+    public static void main(String[] args) {
+        Message msg = new Message();
+        msg.display();
+    }
+}
+
+
+
+
+# 1. Compile Message.java and create the package folder (-d . creates the directory automatically)
+javac -d . Message.java
+
+# 2. Compile PackageDemo.java
+javac PackageDemo.java
+
+# 3. Run PackageDemo
+java PackageDemo
